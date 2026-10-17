@@ -6,3 +6,7 @@ numpy
 pillow
 torch
 torchvision
+librosa
+soundfile
+scipy
+scikit-learn
