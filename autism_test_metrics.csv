@@ -1,0 +1,2 @@
+Model,Accuracy,Precision,Sensitivity,Specificity,F1 Score,ROC-AUC,TN,FP,FN,TP
+Weighted Fusion (ResNet18 + 1D CNN + 3D CNN),0.7,1.0,0.4,1.0,0.5714285714285714,0.9100000000000001,10,0,6,4
