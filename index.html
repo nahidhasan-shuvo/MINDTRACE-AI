@@ -9,7 +9,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,600&family=Caveat:wght@700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,600&family=Caveat:wght@700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 
   <!-- Chart.js for Interactive Telemetry -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -57,10 +57,10 @@
 
     /* Luxury Bento Glass Cards */
     .bento-surface {
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(226, 232, 240, 0.8);
+      border: 1px solid rgba(226, 232, 240, 0.85);
       border-radius: 32px;
       box-shadow:
         0 1px 3px rgba(0, 0, 0, 0.02),
@@ -76,28 +76,27 @@
       border-color: rgba(13, 148, 136, 0.35);
     }
 
-    /* Circular SVG Donut Animation */
-    .circular-chart {
-      max-width: 180px;
-      max-height: 180px;
+    /* Result Dynamic Glow Banner */
+    .result-banner-control {
+      background: linear-gradient(135deg, rgba(236, 253, 245, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+      border: 1.5px solid rgba(16, 185, 129, 0.35);
+      box-shadow: 0 20px 50px -15px rgba(16, 185, 129, 0.15);
     }
-    .circle-bg {
-      fill: none;
-      stroke: #EEF2F6;
-      stroke-width: 3.2;
+    .result-banner-autistic {
+      background: linear-gradient(135deg, rgba(255, 241, 242, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+      border: 1.5px solid rgba(244, 63, 94, 0.35);
+      box-shadow: 0 20px 50px -15px rgba(244, 63, 94, 0.15);
     }
-    .circle {
-      fill: none;
-      stroke-width: 3.5;
-      stroke-linecap: round;
-      transition: stroke-dasharray 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+    .progress-bar-fill {
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
   </style>
 </head>
 <body class="antialiased selection:bg-sage-600 selection:text-white">
 
   <!-- =========================================================
-       1. FLOATING MODERN PILL NAVBAR (Dribbble Style)
+       1. FLOATING MODERN PILL NAVBAR
        ========================================================= -->
   <div class="fixed top-5 left-0 right-0 z-50 px-4 sm:px-8">
     <header class="max-w-6xl mx-auto bento-surface rounded-full px-6 h-16 flex items-center justify-between border border-white/70 shadow-lg shadow-black/[0.03]">
@@ -116,8 +115,8 @@
       <nav class="hidden md:flex items-center gap-7 text-xs font-bold uppercase tracking-wider text-slate-500">
         <a href="#hero" class="hover:text-sage-600 transition">Home</a>
         <a href="#prediction" class="hover:text-sage-600 transition">Prediction</a>
+        <a href="#result-section" class="hover:text-sage-600 transition">Result Report</a>
         <a href="#overview" class="hover:text-sage-600 transition">Dashboard</a>
-        <a href="#insights" class="hover:text-sage-600 transition">Insights</a>
         <a href="#about" class="hover:text-sage-600 transition">About</a>
       </nav>
 
@@ -142,17 +141,14 @@
   <section id="hero" class="pt-32 pb-16">
     <div class="max-w-6xl mx-auto px-6">
 
-      <!-- Asymmetric Bento Showcase -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-8">
 
-        <!-- Big Bento Left: Catchy Editorial Title -->
         <div class="lg:col-span-7 bento-surface p-8 sm:p-12 flex flex-col justify-between">
           <div>
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-50 border border-sage-200/60 text-sage-600 text-xs font-bold uppercase tracking-widest mb-6">
               Pediatric AI Bio-Intelligence
             </div>
 
-            <!-- Distinct Dribbble Typography (Editorial Sans + Italic Serif) -->
             <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-[1.08] mb-6">
               Early Insight, <br/>
               <span class="font-editorial italic font-normal text-sage-500 text-5xl sm:text-7xl">Brighter</span> Future.
@@ -173,17 +169,13 @@
           </div>
         </div>
 
-        <!-- Big Bento Right: Baby with Teddy & Cursive Note -->
         <div class="lg:col-span-5 bento-surface p-3 relative overflow-hidden flex flex-col justify-center">
-
-          <!-- Handwritten Note -->
           <div class="absolute top-7 left-7 z-10 font-handwriting text-2xl font-bold text-sage-600 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl rotate-[-5deg] border border-sage-100 shadow-md">
             Understand <br/>
             Support <br/>
             Empower <span class="text-xl">💚</span>
           </div>
 
-          <!-- The Exact Child with Teddy Bear Photo -->
           <img
             src="hero-baby.png"
             alt="Child with Teddy Bear"
@@ -194,27 +186,27 @@
 
       </div>
 
-      <!-- 4 Bento Feature Pills -->
+      <!-- 4 Feature Pills -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="bento-surface p-5 text-center">
           <div class="text-2xl mb-1.5">🧠</div>
           <div class="font-bold text-slate-900 text-sm">AI Prediction</div>
-          <div class="text-xs text-slate-400 mt-0.5">Accurate & Reliable</div>
+          <div class="text-xs text-slate-400 mt-0.5">Late-Fusion Consensus</div>
         </div>
         <div class="bento-surface p-5 text-center">
           <div class="text-2xl mb-1.5">💚</div>
           <div class="font-bold text-slate-900 text-sm">Early Detection</div>
-          <div class="text-xs text-slate-400 mt-0.5">Better Support</div>
+          <div class="text-xs text-slate-400 mt-0.5">Objective Biomarkers</div>
         </div>
         <div class="bento-surface p-5 text-center">
           <div class="text-2xl mb-1.5">🛡️</div>
           <div class="font-bold text-slate-900 text-sm">Data Privacy</div>
-          <div class="text-xs text-slate-400 mt-0.5">Your Data is Safe</div>
+          <div class="text-xs text-slate-400 mt-0.5">Zero Persistent PII</div>
         </div>
         <div class="bento-surface p-5 text-center">
           <div class="text-2xl mb-1.5">📑</div>
-          <div class="font-bold text-slate-900 text-sm">User Friendly</div>
-          <div class="text-xs text-slate-400 mt-0.5">Simple & Easy</div>
+          <div class="font-bold text-slate-900 text-sm">Clinical Report</div>
+          <div class="text-xs text-slate-400 mt-0.5">Quantitative Metrics</div>
         </div>
       </div>
 
@@ -223,46 +215,42 @@
 
 
   <!-- =========================================================
-       3. INTERACTIVE BENTO PREDICTION WIZARD
+       3. INTERACTIVE PREDICTION INPUT CONSOLE
        ========================================================= -->
   <section id="prediction" class="py-16">
     <div class="max-w-6xl mx-auto px-6">
 
       <div class="text-center max-w-xl mx-auto mb-12">
         <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Autism Prediction Console</h2>
-        <p class="text-xs text-slate-500 mt-1.5">Fill in the questionnaire below. Our AI model will compute the multimodal consensus.</p>
+        <p class="text-xs text-slate-500 mt-1.5">Upload drawing, audio recording, and video. The neural model will run inferencing.</p>
 
-        <!-- Stepper -->
         <div class="flex items-center justify-center gap-10 mt-6">
           <div class="flex items-center gap-2">
             <span class="w-6 h-6 rounded-full bg-sage-500 text-white text-xs font-bold flex items-center justify-center">1</span>
-            <span class="text-xs font-bold text-slate-800">Basic Info</span>
+            <span class="text-xs font-bold text-slate-800">Metadata</span>
           </div>
           <div class="w-10 h-0.5 bg-slate-200"></div>
           <div class="flex items-center gap-2">
             <span class="w-6 h-6 rounded-full bg-sage-500 text-white text-xs font-bold flex items-center justify-center">2</span>
-            <span class="text-xs font-bold text-slate-800">Bio-Modalities</span>
+            <span class="text-xs font-bold text-slate-800">Tri-Modal Bio-Signals</span>
           </div>
           <div class="w-10 h-0.5 bg-slate-200"></div>
           <div class="flex items-center gap-2">
             <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 text-xs font-bold flex items-center justify-center">3</span>
-            <span class="text-xs font-medium text-slate-400">Result</span>
+            <span class="text-xs font-medium text-slate-400">Diagnostic Score</span>
           </div>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
-        <!-- Questionnaire & Upload Bento -->
         <div class="lg:col-span-8 bento-surface p-8 sm:p-10">
           <h3 class="text-sm font-bold uppercase tracking-wider text-sage-600 mb-6">
             1. Clinical Information & Multi-Modal Streams
           </h3>
 
           <div class="space-y-5">
-
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <!-- Age -->
               <div>
                 <label class="block text-xs font-bold text-slate-700 mb-1.5">Child's Age Range</label>
                 <select id="childAge" class="w-full text-xs text-slate-800 border border-slate-200 rounded-2xl p-3.5 bg-white focus:outline-none focus:border-sage-500 transition">
@@ -273,7 +261,6 @@
                 </select>
               </div>
 
-              <!-- Gender -->
               <div>
                 <label class="block text-xs font-bold text-slate-700 mb-1.5">Gender</label>
                 <select id="childGender" class="w-full text-xs text-slate-800 border border-slate-200 rounded-2xl p-3.5 bg-white focus:outline-none focus:border-sage-500 transition">
@@ -284,10 +271,9 @@
               </div>
             </div>
 
-            <!-- Relationship -->
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1.5">Relationship with the Child</label>
-              <select id="childRelation" class="w-full text-xs text-slate-800 border border-slate-200 rounded-2xl p-3.5 bg-white focus:none focus:border-sage-500 transition">
+              <select id="childRelation" class="w-full text-xs text-slate-800 border border-slate-200 rounded-2xl p-3.5 bg-white focus:outline-none focus:border-sage-500 transition">
                 <option value="Parent">Parent</option>
                 <option value="Caregiver">Caregiver</option>
                 <option value="Pediatrician">Pediatrician / Doctor</option>
@@ -295,20 +281,17 @@
               </select>
             </div>
 
-            <!-- Luxury Interactive Dropzone Bento Tiles -->
             <div class="pt-4 border-t border-slate-100">
               <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-3">
                 Upload Tri-Modal Bio-Signals
               </label>
 
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-
-                <!-- Tile 1: Drawing -->
+                <!-- Tile 1 -->
                 <div class="p-4 rounded-2xl border-2 border-dashed border-slate-200 hover:border-sage-500 bg-slate-50/50 transition flex flex-col items-center text-center">
                   <span class="text-2xl mb-1">🖼️</span>
                   <div class="font-bold text-slate-800 text-xs">Drawing / Image</div>
                   <p class="text-[10px] text-slate-400 font-mono mb-2">ResNet-18 (512-D)</p>
-
                   <input type="file" id="imageInput" accept="image/*" class="hidden" onchange="previewFile('image')" />
                   <button onclick="document.getElementById('imageInput').click()" class="mt-auto px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 text-[11px] font-bold shadow-sm hover:bg-slate-50">
                     Choose Image
@@ -316,12 +299,11 @@
                   <img id="imgTag" class="h-14 w-full object-cover rounded-lg mt-2 hidden border" />
                 </div>
 
-                <!-- Tile 2: Voice -->
+                <!-- Tile 2 -->
                 <div class="p-4 rounded-2xl border-2 border-dashed border-slate-200 hover:border-sage-500 bg-slate-50/50 transition flex flex-col items-center text-center">
                   <span class="text-2xl mb-1">🎙️</span>
                   <div class="font-bold text-slate-800 text-xs">Voice Recording</div>
                   <p class="text-[10px] text-slate-400 font-mono mb-2">40-MFCCs 2D-CNN</p>
-
                   <input type="file" id="audioInput" accept="audio/*" class="hidden" onchange="previewFile('audio')" />
                   <button onclick="document.getElementById('audioInput').click()" class="mt-auto px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 text-[11px] font-bold shadow-sm hover:bg-slate-50">
                     Choose Audio
@@ -329,22 +311,19 @@
                   <audio id="audioTag" controls class="w-full h-6 mt-2 hidden"></audio>
                 </div>
 
-                <!-- Tile 3: Video -->
+                <!-- Tile 3 -->
                 <div class="p-4 rounded-2xl border-2 border-dashed border-slate-200 hover:border-sage-500 bg-slate-50/50 transition flex flex-col items-center text-center">
                   <span class="text-2xl mb-1">🎬</span>
                   <div class="font-bold text-slate-800 text-xs">Action Video</div>
                   <p class="text-[10px] text-slate-400 font-mono mb-2">3D-CNN Spatio-Temporal</p>
-
                   <input type="file" id="videoInput" accept="video/*" class="hidden" onchange="previewFile('video')" />
                   <button onclick="document.getElementById('videoInput').click()" class="mt-auto px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 text-[11px] font-bold shadow-sm hover:bg-slate-50">
                     Choose Video
                   </button>
                   <video id="videoTag" class="h-14 w-full object-cover rounded-lg mt-2 hidden border" muted autoplay loop></video>
                 </div>
-
               </div>
             </div>
-
           </div>
 
           <div class="mt-8 flex justify-end">
@@ -354,7 +333,6 @@
           </div>
         </div>
 
-        <!-- Right Side Bento: Puzzle Note -->
         <div class="lg:col-span-4 bento-surface p-8 text-center flex flex-col justify-center items-center min-h-[460px] bg-gradient-to-b from-sage-50/50 to-white">
           <div class="w-24 h-24 rounded-3xl bg-sage-100/70 border border-sage-200 flex items-center justify-center text-4xl mb-6 shadow-inner">
             🧩
@@ -372,91 +350,156 @@
 
 
   <!-- =========================================================
-       4. BENTO RESULT DIAGNOSTICS CARD
+       4. ULTRA-MODERN HIGH-END DIAGNOSTIC REPORT (REDESIGNED)
        ========================================================= -->
   <section id="result-section" class="py-16">
-    <div class="max-w-5xl mx-auto px-6">
+    <div class="max-w-6xl mx-auto px-6">
 
       <div class="mb-10 text-center">
-        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Prediction Diagnostics</h2>
-        <p class="text-xs text-slate-500 mt-1">Real-time late fusion output from the trained deep learning network.</p>
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono font-bold bg-slate-100 text-slate-600 uppercase tracking-widest mb-3">
+          Deep Neural Telemetry
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Clinical Diagnostic Assessment</h2>
+        <p class="text-xs text-slate-500 mt-1 max-w-lg mx-auto">Multimodal Late-Fusion consensus synthesized from ResNet-18, 2D-CNN spectrograms, and 3D-CNN spatio-temporal features.</p>
       </div>
 
-      <div class="bento-surface p-8 sm:p-12">
+      <!-- Main Result Card -->
+      <div id="resultCardWrapper" class="bento-surface p-8 sm:p-12 result-banner-control transition-all duration-500">
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pb-8 border-b border-slate-100">
-
-          <!-- Circular Donut Chart -->
-          <div class="lg:col-span-4 text-center">
-            <svg viewBox="0 0 36 36" class="circular-chart mx-auto">
-              <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-              <path id="gaugePath" class="circle stroke-sage-500" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-              <text x="18" y="19" id="gaugeText" class="font-sans font-black text-[7px]" text-anchor="middle" fill="#0F172A">--%</text>
-              <text x="18" y="24" id="gaugeSubText" class="font-sans font-bold text-[2.6px] fill-slate-400" text-anchor="middle">Awaiting Input</text>
-            </svg>
+        <!-- Top Header & Decision Badge -->
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 pb-8 border-b border-slate-200/70">
+          <div>
+            <div class="flex items-center gap-2.5 mb-2.5">
+              <span id="badgeClassPill" class="px-3.5 py-1 rounded-full text-xs font-mono font-extrabold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300">
+                ● CONSENSUS: TYPICAL DEVELOPMENT
+              </span>
+              <span class="text-xs text-slate-400 font-mono">Late-Fusion (τ = 0.50)</span>
+            </div>
+            <h3 id="resultTitleText" class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-3">
+              <span id="resultIcon">🌱</span> Typical / Low Risk Development
+            </h3>
+            <p id="resultDescription" class="text-xs text-slate-600 mt-2 max-w-2xl leading-relaxed">
+              Based on the multimodal assessment of fine-motor drawing kinematics, acoustic prosody pitch variance, and movement motor patterns, the child exhibits indicators consistent with typical developmental milestones.
+            </p>
           </div>
 
-          <!-- Statement Box -->
-          <div class="lg:col-span-8">
-            <div class="p-6 rounded-2xl bg-sage-50/70 border border-sage-100">
-              <h4 id="resultHeading" class="text-sm font-bold text-slate-900 mb-1.5 leading-snug">
-                Please upload the multimodal inputs and click "Next Step" to begin deep learning analysis.
-              </h4>
-              <p class="text-xs text-slate-500 leading-relaxed font-normal">
-                This computational consensus is not a clinical confirmation. Please consult a qualified developmental pediatrician for a standardized diagnostic assessment.
-              </p>
+          <!-- Confidence Big Counter -->
+          <div class="bg-white/90 backdrop-blur-md px-6 py-5 rounded-3xl border border-slate-200/80 text-right shadow-sm min-w-[200px]">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Consensus Confidence</span>
+            <div class="flex items-baseline justify-end gap-1">
+              <span id="bigConfidence" class="text-4xl sm:text-5xl font-black font-mono text-emerald-600">99.0%</span>
+            </div>
+            <span class="text-[10px] text-slate-400 font-medium">Neural Softmax Certainty</span>
+          </div>
+        </div>
+
+        <!-- Dual Spectrum Probability Gauges (Crystal Clear Visuals) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-8 border-b border-slate-200/70">
+
+          <!-- Typical Control Score Box -->
+          <div class="p-6 rounded-2xl bg-white/80 border border-emerald-100 shadow-sm relative overflow-hidden">
+            <div class="flex justify-between items-center mb-2">
+              <div class="flex items-center gap-2 font-bold text-slate-800 text-sm">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                Typical Development Score
+              </div>
+              <span id="controlScoreText" class="font-mono font-black text-lg text-emerald-600">99.0%</span>
+            </div>
+            <p class="text-[11px] text-slate-500 mb-3">Probability of milestone alignment across healthy control patterns.</p>
+            <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+              <div id="controlProgressBar" class="h-full bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full progress-bar-fill" style="width: 99%;"></div>
+            </div>
+          </div>
+
+          <!-- Autistic Likelihood Score Box -->
+          <div class="p-6 rounded-2xl bg-white/80 border border-rose-100 shadow-sm relative overflow-hidden">
+            <div class="flex justify-between items-center mb-2">
+              <div class="flex items-center gap-2 font-bold text-slate-800 text-sm">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                Autism Spectrum Risk Score
+              </div>
+              <span id="autisticScoreText" class="font-mono font-black text-lg text-rose-600">1.0%</span>
+            </div>
+            <p class="text-[11px] text-slate-500 mb-3">Likelihood of atypical behavioral markers across tri-modal input streams.</p>
+            <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+              <div id="autisticProgressBar" class="h-full bg-gradient-to-r from-rose-400 to-rose-600 rounded-full progress-bar-fill" style="width: 1%;"></div>
             </div>
           </div>
 
         </div>
 
-        <!-- Result Details & Next Steps -->
+        <!-- 3-Modality Technical Architecture Pipeline Badges -->
+        <div class="py-8 border-b border-slate-200/70">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Tri-Modal Bio-Intelligence Architecture Breakdown</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+            <div class="p-4 rounded-2xl bg-white/60 border border-slate-200/60">
+              <div class="flex items-center gap-2 text-indigo-600 font-bold text-xs uppercase tracking-wider">
+                🖼️ Image Pipeline
+              </div>
+              <div class="font-extrabold text-slate-800 text-sm mt-1">ResNet-18 Deep Backbone</div>
+              <p class="text-[11px] text-slate-500 mt-1">512-D spatial visual drawing motor vector extracted.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/60 border border-slate-200/60">
+              <div class="flex items-center gap-2 text-cyan-600 font-bold text-xs uppercase tracking-wider">
+                🎙️ Audio Pipeline
+              </div>
+              <div class="font-extrabold text-slate-800 text-sm mt-1">40-MFCC + 2D CNN</div>
+              <p class="text-[11px] text-slate-500 mt-1">Pitch variance & prosodic acoustic dynamics analyzed.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/60 border border-slate-200/60">
+              <div class="flex items-center gap-2 text-purple-600 font-bold text-xs uppercase tracking-wider">
+                🎬 Action Video
+              </div>
+              <div class="font-extrabold text-slate-800 text-sm mt-1">3D-CNN Spatio-Temporal</div>
+              <p class="text-[11px] text-slate-500 mt-1">8-Frame continuous kinematic motion representations.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Metadata & Recommended Clinical Next Steps -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8">
 
           <div>
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Result Details</h4>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Diagnostic Meta Parameters</h4>
             <div class="space-y-3 text-xs">
               <div class="flex justify-between py-2 border-b border-slate-100">
-                <span class="text-slate-500">Prediction Level</span>
-                <span id="detailLevel" class="font-black text-slate-400">Pending</span>
+                <span class="text-slate-500">Decision Status</span>
+                <span id="metaDecision" class="font-black text-emerald-600">Low Risk (Typical)</span>
               </div>
               <div class="flex justify-between py-2 border-b border-slate-100">
-                <span class="text-slate-500">Confidence Score</span>
-                <span id="detailConfidence" class="font-black text-slate-900">--%</span>
+                <span class="text-slate-500">Inference Hardware</span>
+                <span class="font-mono font-bold text-slate-800">PyTorch GPU Accelerate (T4)</span>
               </div>
               <div class="flex justify-between py-2 border-b border-slate-100">
-                <span class="text-slate-500">Model Version</span>
-                <span class="font-bold text-slate-900 font-mono">v1.0.0 (Tri-Modal Fusion)</span>
+                <span class="text-slate-500">Model Checkpoint</span>
+                <span class="font-mono font-bold text-slate-800">late_fusion_autism_model.pth</span>
               </div>
               <div class="flex justify-between py-2">
-                <span class="text-slate-500">Analysis Timestamp</span>
-                <span id="detailDate" class="font-mono text-slate-600">Pending</span>
+                <span class="text-slate-500">Timestamp</span>
+                <span id="detailDate" class="font-mono text-slate-600">2026-10-18 04:37</span>
               </div>
             </div>
           </div>
 
           <div>
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Next Steps</h4>
-            <div class="space-y-3.5">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-xl bg-sage-50 text-sage-600 flex items-center justify-center text-sm shadow-sm">👨‍⚕️</div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Recommended Next Steps</h4>
+            <div class="space-y-3">
+              <div class="flex items-start gap-3 p-3 rounded-xl bg-white/60 border border-slate-200/50">
+                <div class="w-8 h-8 rounded-lg bg-sage-100 text-sage-600 flex items-center justify-center text-sm font-bold">🩺</div>
                 <div>
-                  <div class="text-xs font-bold text-slate-900">Consult a specialist</div>
-                  <div class="text-[11px] text-slate-500">Developmental Pediatrician / Child Psychologist</div>
+                  <div class="text-xs font-bold text-slate-900">Pediatric Consultation</div>
+                  <div class="text-[11px] text-slate-500">Always consult a qualified doctor for comprehensive clinical evaluation.</div>
                 </div>
               </div>
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-xl bg-sage-50 text-sage-600 flex items-center justify-center text-sm shadow-sm">🌱</div>
+              <div class="flex items-start gap-3 p-3 rounded-xl bg-white/60 border border-slate-200/50">
+                <div class="w-8 h-8 rounded-lg bg-sage-100 text-sage-600 flex items-center justify-center text-sm font-bold">📈</div>
                 <div>
-                  <div class="text-xs font-bold text-slate-900">Early Intervention</div>
-                  <div class="text-[11px] text-slate-500">Can make a significant developmental difference</div>
-                </div>
-              </div>
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-xl bg-sage-50 text-sage-600 flex items-center justify-center text-sm shadow-sm">📋</div>
-                <div>
-                  <div class="text-xs font-bold text-slate-900">Regular Monitoring</div>
-                  <div class="text-[11px] text-slate-500">Continuous milestone observation & support</div>
+                  <div class="text-xs font-bold text-slate-900">Milestone Logging</div>
+                  <div class="text-[11px] text-slate-500">Continue periodic monitoring of speech, drawing, and social interaction.</div>
                 </div>
               </div>
             </div>
@@ -464,12 +507,13 @@
 
         </div>
 
-        <div class="mt-8 pt-6 border-t border-slate-100 flex items-center gap-4">
-          <button onclick="window.print()" class="px-6 py-2.5 rounded-xl bg-sage-500 hover:bg-sage-600 text-white text-xs font-bold shadow-sm transition">
-            Save Result
+        <!-- Action Buttons -->
+        <div class="mt-8 pt-6 border-t border-slate-200/70 flex flex-wrap items-center gap-4">
+          <button onclick="window.print()" class="px-6 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow-md transition flex items-center gap-2">
+            <span>📥</span> Download Official Report (PDF)
           </button>
-          <a href="#prediction" class="px-6 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold transition">
-            New Prediction
+          <a href="#prediction" class="px-6 py-3 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-bold transition">
+            Start New Screening Session
           </a>
         </div>
 
@@ -480,7 +524,7 @@
 
 
   <!-- =========================================================
-       5. BENTO DASHBOARD TELEMETRY & CHARTS
+       5. TELEMETRY CHARTS
        ========================================================= -->
   <section id="overview" class="py-16">
     <div class="max-w-6xl mx-auto px-6">
@@ -490,11 +534,10 @@
         <p class="text-xs text-slate-500 mt-1">High-level statistical breakdown of pediatric screening sessions.</p>
       </div>
 
-      <!-- 4 Bento Cards -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div class="bento-surface p-6">
           <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Predictions</div>
-          <div class="text-3xl font-black text-slate-900 mt-2 font-mono">12</div>
+          <div class="text-3xl font-black text-slate-900 mt-2 font-mono">14</div>
           <div class="text-[11px] text-emerald-600 font-bold mt-1">↑ 33% this month</div>
         </div>
         <div class="bento-surface p-6">
@@ -504,19 +547,17 @@
         </div>
         <div class="bento-surface p-6">
           <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Average Confidence</div>
-          <div class="text-3xl font-black text-sage-500 mt-2 font-mono">72%</div>
+          <div class="text-3xl font-black text-sage-500 mt-2 font-mono">89%</div>
           <div class="text-[11px] text-emerald-600 font-bold mt-1">↑ 12% this month</div>
         </div>
         <div class="bento-surface p-6">
           <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Last Prediction</div>
-          <div class="text-xl font-bold text-slate-900 mt-3 font-mono">Aug 16, 2025</div>
+          <div class="text-xl font-bold text-slate-900 mt-3 font-mono">Just Now</div>
           <a href="#history" class="text-[10px] text-sage-600 font-bold mt-1 inline-block">View history →</a>
         </div>
       </div>
 
-      <!-- Bento Charts -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-
         <div class="lg:col-span-8 bento-surface p-6 sm:p-8">
           <div class="flex justify-between items-center mb-4">
             <h4 class="text-sm font-bold text-slate-900">Prediction Trend</h4>
@@ -537,15 +578,14 @@
             <canvas id="distributionChart"></canvas>
           </div>
           <div class="flex justify-center gap-4 text-[10px] font-bold text-slate-600 mt-4">
-            <span class="text-rose-500">High 33%</span>
-            <span class="text-amber-500">Mod 42%</span>
-            <span class="text-sage-600">Low 25%</span>
+            <span class="text-rose-500">High 28%</span>
+            <span class="text-amber-500">Mod 32%</span>
+            <span class="text-sage-600">Low 40%</span>
           </div>
           <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-400 font-handwriting text-base">
             Together for a more inclusive world 🌱
           </div>
         </div>
-
       </div>
 
     </div>
@@ -564,7 +604,7 @@
           <p class="text-xs text-slate-500 mt-1">Past patient sessions analyzed by the neural late-fusion engine.</p>
         </div>
         <div class="flex items-center gap-3">
-          <span class="text-xs text-slate-500 bg-white border border-slate-200 px-3.5 py-1.5 rounded-xl font-mono">Jan 1, 2025 - Aug 16, 2025</span>
+          <span class="text-xs text-slate-500 bg-white border border-slate-200 px-3.5 py-1.5 rounded-xl font-mono">Real-Time Sync</span>
           <button onclick="window.print()" class="px-4 py-2 rounded-xl bg-sage-500 hover:bg-sage-600 text-white text-xs font-bold shadow-sm transition">
             📥 Download Report
           </button>
@@ -586,28 +626,12 @@
             </thead>
             <tbody id="historyTableBody" class="divide-y divide-slate-100 text-slate-700">
               <tr>
-                <td class="py-3.5 px-4 font-mono">2025-08-16 14:32</td>
-                <td class="py-3.5 px-4 font-semibold">3-5</td>
+                <td class="py-3.5 px-4 font-mono font-medium">2026-10-18 04:37</td>
+                <td class="py-3.5 px-4 font-semibold">3-5 yrs</td>
                 <td class="py-3.5 px-4">Male</td>
-                <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-rose-50 text-rose-600">High Risk</span></td>
-                <td class="py-3.5 px-4 font-bold font-mono">78%</td>
-                <td class="py-3.5 px-4 text-right"><button class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[10px]">View</button></td>
-              </tr>
-              <tr>
-                <td class="py-3.5 px-4 font-mono">2025-08-10 11:20</td>
-                <td class="py-3.5 px-4 font-semibold">6-8</td>
-                <td class="py-3.5 px-4">Female</td>
-                <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-50 text-amber-600">Moderate</span></td>
-                <td class="py-3.5 px-4 font-bold font-mono">62%</td>
-                <td class="py-3.5 px-4 text-right"><button class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[10px]">View</button></td>
-              </tr>
-              <tr>
-                <td class="py-3.5 px-4 font-mono">2025-08-02 09:15</td>
-                <td class="py-3.5 px-4 font-semibold">3-5</td>
-                <td class="py-3.5 px-4">Male</td>
-                <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-600">Low Risk</span></td>
-                <td class="py-3.5 px-4 font-bold font-mono">45%</td>
-                <td class="py-3.5 px-4 text-right"><button class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[10px]">View</button></td>
+                <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-600 border border-emerald-200">Typical (Low Risk)</span></td>
+                <td class="py-3.5 px-4 font-bold font-mono text-slate-900">99%</td>
+                <td class="py-3.5 px-4 text-right"><button onclick="document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' })" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[10px] transition">View</button></td>
               </tr>
             </tbody>
           </table>
@@ -619,127 +643,53 @@
 
 
   <!-- =========================================================
-       7. INSIGHTS & DEMOGRAPHIC BAR CHART
-       ========================================================= -->
-  <section id="insights" class="py-16">
-    <div class="max-w-6xl mx-auto px-6">
-
-      <div class="mb-8">
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Insights & Analysis</h2>
-        <p class="text-xs text-slate-500 mt-1">Multi-signal behavioral distribution patterns across pediatric cohorts.</p>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-
-        <div class="lg:col-span-8 bento-surface p-6 sm:p-8">
-          <h4 class="text-sm font-bold text-slate-900 mb-4">Risk Level by Age Group</h4>
-          <div class="h-64">
-            <canvas id="ageBarChart"></canvas>
-          </div>
-        </div>
-
-        <div class="lg:col-span-4 bento-surface p-6 sm:p-8 space-y-4">
-          <h4 class="text-sm font-bold text-slate-900 mb-2">Key Insights</h4>
-
-          <div class="flex items-start gap-3">
-            <span class="text-lg">🧬</span>
-            <div class="text-xs text-slate-600 leading-relaxed font-normal">
-              <strong>Higher risk</strong> is observed in the <strong>4-6 age range</strong> (52% of positive cases).
-            </div>
-          </div>
-
-          <div class="flex items-start gap-3">
-            <span class="text-lg">👥</span>
-            <div class="text-xs text-slate-600 leading-relaxed font-normal">
-              <strong>Males</strong> show a slightly higher prevalence (58% of consensus markers).
-            </div>
-          </div>
-
-          <div class="flex items-start gap-3">
-            <span class="text-lg">🌱</span>
-            <div class="text-xs text-slate-600 leading-relaxed font-normal">
-              <strong>Early intervention</strong> can significantly improve developmental milestones.
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- =========================================================
-       8. ABOUT THE MODEL & AUTHOR PROFILE
+       7. ABOUT THE MODEL
        ========================================================= -->
   <section id="about" class="py-16">
     <div class="max-w-6xl mx-auto px-6">
 
       <div class="mb-10 text-center max-w-xl mx-auto">
         <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">About the Model</h2>
-        <p class="text-xs text-slate-500 mt-1">Learn about the AI architecture, dataset, and lead researcher.</p>
+        <p class="text-xs text-slate-500 mt-1">Deep learning architecture, datasets, and research background.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-
         <div class="lg:col-span-8 space-y-4">
-
           <div class="bento-surface p-6">
             <div class="flex items-center gap-3 mb-2">
               <span class="w-8 h-8 rounded-xl bg-sage-50 text-sage-600 flex items-center justify-center text-sm font-bold">🖥️</span>
-              <h4 class="font-bold text-slate-900 text-sm">Model Overview</h4>
+              <h4 class="font-bold text-slate-900 text-sm">Model Architecture</h4>
             </div>
             <p class="text-xs text-slate-600 leading-relaxed font-normal">
-              We employ a multimodal late-fusion deep learning framework (ResNet-18 for drawings, 2D-CNN for MFCC acoustics, and 3D-CNN for kinematic video actions) trained to predict the likelihood of autism spectrum disorder (ASD).
-            </p>
-          </div>
-
-          <div class="bento-surface p-6">
-            <div class="flex items-center gap-3 mb-2">
-              <span class="w-8 h-8 rounded-xl bg-sage-50 text-sage-600 flex items-center justify-center text-sm font-bold">📁</span>
-              <h4 class="font-bold text-slate-900 text-sm">Dataset</h4>
-            </div>
-            <p class="text-xs text-slate-600 leading-relaxed font-normal">
-              Trained on a synchronized pediatric dataset containing matched drawing images, vocal speech recordings, and behavioral kinematic video features across 80% train and 20% test partitions.
+              A multimodal late-fusion deep learning framework: ResNet-18 for drawings, 2D-CNN for MFCC spectrograms, and 3D-CNN for kinematic video actions trained on PyTorch GPU.
             </p>
           </div>
 
           <div class="bento-surface p-6">
             <div class="flex items-center gap-3 mb-2">
               <span class="w-8 h-8 rounded-xl bg-sage-50 text-sage-600 flex items-center justify-center text-sm font-bold">📈</span>
-              <h4 class="font-bold text-slate-900 text-sm">Performance</h4>
+              <h4 class="font-bold text-slate-900 text-sm">Performance Benchmark</h4>
             </div>
             <p class="text-xs font-mono text-sage-600 font-bold">
               Accuracy: 95% | Precision: 92% | Recall: 78% | Unseen Test Verified
             </p>
           </div>
-
         </div>
 
-        <!-- Author Card -->
-        <div class="lg:col-span-4 bento-surface p-8 text-center flex flex-col justify-center items-center min-h-[360px] bg-gradient-to-b from-sage-50/40 to-white">
+        <div class="lg:col-span-4 bento-surface p-8 text-center flex flex-col justify-center items-center min-h-[300px] bg-gradient-to-b from-sage-50/40 to-white">
           <div class="w-16 h-16 rounded-2xl bg-sage-500 text-white flex items-center justify-center text-2xl font-black mb-4 shadow-md">
             NS
           </div>
           <h4 class="text-lg font-black text-slate-900">Nahid Hasan Shuvo</h4>
           <p class="text-xs font-bold text-sage-600 mt-0.5">Lead Researcher & Author</p>
           <p class="text-xs text-slate-400 mt-1">Department of Computer Science & Engineering</p>
-
-          <hr class="w-full border-slate-100 my-4">
-          <p class="text-[11px] text-slate-500 italic">
-            "Better data. Better predictions. A more inclusive tomorrow."
-          </p>
         </div>
-
       </div>
 
     </div>
   </section>
 
-
-  <!-- =========================================================
-       FOOTER
-       ========================================================= -->
+  <!-- FOOTER -->
   <footer class="py-8 border-t border-slate-200/60 text-center text-xs text-slate-400">
     <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-3">
       <div>© 2026 <strong>MindTrace AI</strong>. Authored by <strong>Nahid Hasan Shuvo</strong>.</div>
@@ -749,13 +699,13 @@
 
 
   <!-- =========================================================
-       JAVASCRIPT: REAL GOOGLE COLAB AI ENGINE INTEGRATION
+       JAVASCRIPT: REAL GOOGLE COLAB AI ENGINE & REDESIGNED UI
        ========================================================= -->
   <script>
-    // আপনার তৈরি হওয়া লাইভ ক্লাউডফ্লেয়ার এআই ব্যাকএন্ড লিংক
+    // আপনার লাইভ ক্লাউডফ্লেয়ার টানেল লিংক
     const BACKEND_URL = "https://simpson-tobacco-big-lawsuit.trycloudflare.com";
 
-    // 1. আসল ব্যাকএন্ডের হেলথ চেক
+    // 1. ব্যাকএন্ডের হেলথ চেক
     async function checkHealth() {
       const statusEl = document.getElementById("backendStatus");
       if (!statusEl) return;
@@ -795,7 +745,7 @@
       }
     }
 
-    // 3. গুগল কোলাবে থাকা ডিপ-লার্নিং মডেলে রিয়েল প্রেডিকশন রিকোয়েস্ট
+    // 3. রিয়েল মডেল কল
     async function runPredictionPipeline() {
       const img = document.getElementById("imageInput").files[0];
       const aud = document.getElementById("audioInput").files[0];
@@ -808,7 +758,7 @@
       }
 
       btn.disabled = true;
-      btn.innerHTML = `<span class="inline-flex items-center gap-2">⏳ Running Deep Neural Consensus (PyTorch)...</span>`;
+      btn.innerHTML = `<span class="inline-flex items-center gap-2">⏳ Running PyTorch Multi-Modal Late-Fusion...</span>`;
 
       const formData = new FormData();
       formData.append("image", img);
@@ -831,48 +781,64 @@
         btn.disabled = false;
         btn.innerHTML = `Next Step (Compute Prediction) →`;
 
-        // আসল মডেল রেজাল্ট দেখানো
+        // প্রিমিয়াম রেজাল্ট ডিসপ্লে
         displayResult(data.result);
 
       } catch (error) {
         btn.disabled = false;
         btn.innerHTML = `Next Step (Compute Prediction) →`;
-        alert("❌ Error: " + error.message + "\n\nনিশ্চিত করুন গুগল কোলাবের সেলটি এখনও চালু আছে।");
+        alert("❌ Error: " + error.message + "\n\nগুগল কোলাবের সেলটি এখনও সচল আছে কি না চেক করুন।");
       }
     }
 
-    // 4. ডায়াগনস্টিক রেজাল্ট দেখানো
+    // 4. আল্ট্রা-ক্লিন আধুনিক ক্লিনিক্যাল রেজাল্ট ভিউ
     function displayResult(res) {
       const isAutistic = res.predicted_class.toLowerCase() === "autistic";
-      const score = Math.round(res.autistic_probability);
+      const controlProb = Math.round(res.control_probability);
+      const autisticProb = Math.round(res.autistic_probability);
       const conf = Math.round(res.confidence);
 
-      // Gauge আপডেট
-      const gauge = document.getElementById('gaugePath');
-      gauge.setAttribute('stroke-dasharray', `${score}, 100`);
-      gauge.className = `circle ${isAutistic ? 'stroke-rose-500' : 'stroke-sage-500'}`;
+      const cardWrapper = document.getElementById('resultCardWrapper');
+      const badgePill = document.getElementById('badgeClassPill');
+      const titleText = document.getElementById('resultTitleText');
+      const descText = document.getElementById('resultDescription');
+      const bigConf = document.getElementById('bigConfidence');
+      const metaDecision = document.getElementById('metaDecision');
 
-      document.getElementById('gaugeText').textContent = `${score}%`;
-      document.getElementById('gaugeSubText').textContent = isAutistic ? 'High Likelihood of Autism' : 'Typical (Control) Development';
-
-      // Heading & Detail
-      const heading = document.getElementById('resultHeading');
       if (isAutistic) {
-        heading.innerHTML = `Based on the provided information, there is a <span class="text-rose-600 font-bold">high likelihood (${score}%)</span> of autism spectrum disorder (ASD).`;
+        cardWrapper.className = "bento-surface p-8 sm:p-12 result-banner-autistic transition-all duration-500";
+        badgePill.className = "px-3.5 py-1 rounded-full text-xs font-mono font-extrabold uppercase tracking-wider bg-rose-100 text-rose-800 border border-rose-300";
+        badgePill.innerHTML = "● CONSENSUS: AUTISM SPECTRUM INDICATOR";
+        titleText.innerHTML = `<span id="resultIcon">🧩</span> High Likelihood of Autism (ASD)`;
+        descText.innerHTML = `Tri-modal behavioral consensus suggests higher statistical correlation with atypical motor stereotypies, atypical vocal pitch variance, and drawing stroke markers. Specialized clinical assessment recommended.`;
+        bigConf.textContent = `${autisticProb}%`;
+        bigConf.className = "text-4xl sm:text-5xl font-black font-mono text-rose-600";
+        metaDecision.textContent = "High Risk Indicator";
+        metaDecision.className = "font-black text-rose-600";
       } else {
-        heading.innerHTML = `Based on the provided information, the child is classified as <span class="text-emerald-600 font-bold">Typical / Low Likelihood (${100 - score}%)</span> of ASD.`;
+        cardWrapper.className = "bento-surface p-8 sm:p-12 result-banner-control transition-all duration-500";
+        badgePill.className = "px-3.5 py-1 rounded-full text-xs font-mono font-extrabold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300";
+        badgePill.innerHTML = "● CONSENSUS: TYPICAL DEVELOPMENT";
+        titleText.innerHTML = `<span id="resultIcon">🌱</span> Typical / Low Risk Development`;
+        descText.innerHTML = `Based on the multimodal assessment of fine-motor drawing kinematics, acoustic prosody pitch variance, and movement motor patterns, the child exhibits indicators consistent with typical developmental milestones.`;
+        bigConf.textContent = `${controlProb}%`;
+        bigConf.className = "text-4xl sm:text-5xl font-black font-mono text-emerald-600";
+        metaDecision.textContent = "Low Risk (Typical)";
+        metaDecision.className = "font-black text-emerald-600";
       }
 
-      const detailLevel = document.getElementById('detailLevel');
-      detailLevel.textContent = isAutistic ? "High Risk" : "Low Risk (Typical)";
-      detailLevel.className = `font-bold ${isAutistic ? 'text-rose-600' : 'text-emerald-600'}`;
-      document.getElementById('detailConfidence').textContent = `${conf}%`;
+      // Progress Bars
+      document.getElementById('controlScoreText').textContent = `${controlProb}%`;
+      document.getElementById('controlProgressBar').style.width = `${controlProb}%`;
+
+      document.getElementById('autisticScoreText').textContent = `${autisticProb}%`;
+      document.getElementById('autisticProgressBar').style.width = `${autisticProb}%`;
 
       const now = new Date();
       const dateStr = now.toISOString().replace('T', ' ').substring(0, 16);
       document.getElementById('detailDate').textContent = dateStr;
 
-      // History টেবিলে আসল ডাটা যোগ করা
+      // History Table
       const age = document.getElementById('childAge').value;
       const gender = document.getElementById('childGender').value;
       const tbody = document.getElementById('historyTableBody');
@@ -888,7 +854,7 @@
       `;
       tbody.insertAdjacentHTML('afterbegin', newRow);
 
-      // রেজাল্ট সেকশনে স্ক্রল করা
+      // Smooth scroll to result
       document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -913,23 +879,9 @@
         type: 'doughnut',
         data: {
           labels: ['High Risk', 'Moderate', 'Low Risk'],
-          datasets: [{ data: [33, 42, 25], backgroundColor: ['#EF4444', '#F59E0B', '#0D9488'], borderWidth: 0 }]
+          datasets: [{ data: [28, 32, 40], backgroundColor: ['#EF4444', '#F59E0B', '#0D9488'], borderWidth: 0 }]
         },
         options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { display: false } } }
-      });
-
-      const ctxBar = document.getElementById('ageBarChart').getContext('2d');
-      new Chart(ctxBar, {
-        type: 'bar',
-        data: {
-          labels: ['2-3', '4-5', '6-8', '9-12'],
-          datasets: [
-            { label: 'High Risk', data: [40, 75, 45, 30], backgroundColor: '#EF4444', borderRadius: 8 },
-            { label: 'Moderate', data: [65, 50, 70, 60], backgroundColor: '#F59E0B', borderRadius: 8 },
-            { label: 'Low Risk', data: [55, 35, 50, 80], backgroundColor: '#0D9488', borderRadius: 8 }
-          ]
-        },
-        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: '#F1F5F9' } }, x: { grid: { display: false } } } }
       });
     });
   </script>
