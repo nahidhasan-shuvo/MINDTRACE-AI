@@ -7,7 +7,7 @@
 
   <!-- Tailwind CSS & High-End Dribbble Font Stack -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.preconnect.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,600&family=Caveat:wght@700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
@@ -390,9 +390,9 @@
           <div class="lg:col-span-4 text-center">
             <svg viewBox="0 0 36 36" class="circular-chart mx-auto">
               <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-              <path id="gaugePath" class="circle stroke-sage-500" stroke-dasharray="78, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-              <text x="18" y="19" id="gaugeText" class="font-sans font-black text-[7px]" text-anchor="middle" fill="#0F172A">78%</text>
-              <text x="18" y="24" id="gaugeSubText" class="font-sans font-bold text-[2.6px] fill-slate-400" text-anchor="middle">High Likelihood of Autism</text>
+              <path id="gaugePath" class="circle stroke-sage-500" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              <text x="18" y="19" id="gaugeText" class="font-sans font-black text-[7px]" text-anchor="middle" fill="#0F172A">--%</text>
+              <text x="18" y="24" id="gaugeSubText" class="font-sans font-bold text-[2.6px] fill-slate-400" text-anchor="middle">Awaiting Input</text>
             </svg>
           </div>
 
@@ -400,7 +400,7 @@
           <div class="lg:col-span-8">
             <div class="p-6 rounded-2xl bg-sage-50/70 border border-sage-100">
               <h4 id="resultHeading" class="text-sm font-bold text-slate-900 mb-1.5 leading-snug">
-                Based on the provided information, there is a high likelihood of autism spectrum disorder (ASD).
+                Please upload the multimodal inputs and click "Next Step" to begin deep learning analysis.
               </h4>
               <p class="text-xs text-slate-500 leading-relaxed font-normal">
                 This computational consensus is not a clinical confirmation. Please consult a qualified developmental pediatrician for a standardized diagnostic assessment.
@@ -418,11 +418,11 @@
             <div class="space-y-3 text-xs">
               <div class="flex justify-between py-2 border-b border-slate-100">
                 <span class="text-slate-500">Prediction Level</span>
-                <span id="detailLevel" class="font-black text-rose-600">High Risk</span>
+                <span id="detailLevel" class="font-black text-slate-400">Pending</span>
               </div>
               <div class="flex justify-between py-2 border-b border-slate-100">
                 <span class="text-slate-500">Confidence Score</span>
-                <span id="detailConfidence" class="font-black text-slate-900">78%</span>
+                <span id="detailConfidence" class="font-black text-slate-900">--%</span>
               </div>
               <div class="flex justify-between py-2 border-b border-slate-100">
                 <span class="text-slate-500">Model Version</span>
@@ -430,7 +430,7 @@
               </div>
               <div class="flex justify-between py-2">
                 <span class="text-slate-500">Analysis Timestamp</span>
-                <span id="detailDate" class="font-mono text-slate-600">2026-03-24 14:32</span>
+                <span id="detailDate" class="font-mono text-slate-600">Pending</span>
               </div>
             </div>
           </div>
@@ -749,15 +749,24 @@
 
 
   <!-- =========================================================
-       JAVASCRIPT: SMART MULTIMODAL NEURAL ENGINE & TELEMETRY
+       JAVASCRIPT: REAL BACKEND NEURAL ENGINE INTEGRATION
        ========================================================= -->
   <script>
-    // 1. Autonomous Engine Status (Always Online & Active)
-    function checkHealth() {
+    // 1. Live Backend Engine Status Check (FastAPI /health)
+    async function checkHealth() {
       const statusEl = document.getElementById("backendStatus");
-      if (statusEl) {
-        statusEl.className = "hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm";
-        statusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Engine Active`;
+      if (!statusEl) return;
+      try {
+        const res = await fetch("/health");
+        if (res.ok) {
+          statusEl.className = "hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm";
+          statusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Engine Active`;
+        } else {
+          throw new Error();
+        }
+      } catch (err) {
+        statusEl.className = "hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-rose-50 text-rose-700 border border-rose-200 shadow-sm";
+        statusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-rose-500"></span> Engine Offline`;
       }
     }
     checkHealth();
@@ -783,7 +792,7 @@
       }
     }
 
-    // 3. Autonomous In-Browser Multimodal Neural Late-Fusion Engine
+    // 3. True Multimodal Neural Late-Fusion Request to FastAPI Backend (/predict)
     async function runPredictionPipeline() {
       const img = document.getElementById("imageInput").files[0];
       const aud = document.getElementById("audioInput").files[0];
@@ -798,45 +807,43 @@
       btn.disabled = true;
       btn.innerHTML = `<span class="inline-flex items-center gap-2">⏳ Synthesizing Tri-Modal Consensus...</span>`;
 
-      // Simulating High-Performance Neural Latency (ResNet18 + 2D CNN + 3D CNN)
-      setTimeout(() => {
-        // Deterministic Multi-modal Biomarker Analysis based on input features
-        const hashSeed = (img.size + aud.size + vid.size) % 100;
+      // Build Multi-part FormData for app.py
+      const formData = new FormData();
+      formData.append("image", img);
+      formData.append("audio", aud);
+      formData.append("video", vid);
 
-        let isAutistic = false;
-        let score = 0;
-        let confidence = 0;
+      try {
+        const response = await fetch("/predict", {
+          method: "POST",
+          body: formData
+        });
 
-        // Realistic clinical distribution calculation
-        if (hashSeed > 42) {
-          isAutistic = true;
-          score = Math.floor(72 + (hashSeed % 22)); // 72% - 93%
-          confidence = Math.floor(82 + (hashSeed % 14));
-        } else {
-          isAutistic = false;
-          score = Math.floor(18 + (hashSeed % 20)); // 18% - 37%
-          confidence = Math.floor(85 + (hashSeed % 12));
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({ detail: "Server encountered an error." }));
+          throw new Error(errData.detail || "Prediction request failed.");
         }
 
-        const simulatedResult = {
-          predicted_class: isAutistic ? "Autistic" : "Control",
-          autistic_probability: score,
-          control_probability: 100 - score,
-          confidence: confidence
-        };
+        const data = await response.json();
 
         btn.disabled = false;
         btn.innerHTML = `Next Step (Compute Prediction) →`;
 
-        displayResult(simulatedResult);
-      }, 1400);
+        // Render actual neural model result
+        displayResult(data.result);
+
+      } catch (error) {
+        btn.disabled = false;
+        btn.innerHTML = `Next Step (Compute Prediction) →`;
+        alert("❌ Prediction Error: " + error.message + "\n\nPlease ensure 'python app.py' is running and model weights are accessible.");
+      }
     }
 
-    // 4. Populate Result Card & History Table
+    // 4. Populate Result Card & History Table with Real Predictions
     function displayResult(res) {
       const isAutistic = res.predicted_class.toLowerCase() === "autistic";
-      const score = res.autistic_probability;
-      const conf = res.confidence;
+      const score = Math.round(res.autistic_probability);
+      const conf = Math.round(res.confidence);
 
       // Animate Donut Gauge
       const gauge = document.getElementById('gaugePath');
@@ -849,13 +856,14 @@
       // Heading & Detail
       const heading = document.getElementById('resultHeading');
       if (isAutistic) {
-        heading.innerHTML = `Based on the provided information, there is a <span class="text-rose-600 font-bold">high likelihood</span> of autism spectrum disorder (ASD).`;
+        heading.innerHTML = `Based on the provided multimodal signals, there is a <span class="text-rose-600 font-bold">high likelihood (${score}%)</span> of autism spectrum disorder (ASD).`;
       } else {
-        heading.innerHTML = `Based on the provided information, the child is classified as <span class="text-emerald-600 font-bold">Typical / Low Likelihood</span> of ASD.`;
+        heading.innerHTML = `Based on the provided multimodal signals, the child is classified as <span class="text-emerald-600 font-bold">Typical / Low Likelihood (${100 - score}%)</span> of ASD.`;
       }
 
-      document.getElementById('detailLevel').textContent = isAutistic ? "High Risk" : "Low Risk";
-      document.getElementById('detailLevel').className = `font-bold ${isAutistic ? 'text-rose-600' : 'text-emerald-600'}`;
+      const detailLevel = document.getElementById('detailLevel');
+      detailLevel.textContent = isAutistic ? "High Risk" : "Low Risk (Typical)";
+      detailLevel.className = `font-bold ${isAutistic ? 'text-rose-600' : 'text-emerald-600'}`;
       document.getElementById('detailConfidence').textContent = `${conf}%`;
 
       const now = new Date();
@@ -871,7 +879,7 @@
           <td class="py-3.5 px-4 font-mono font-medium">${dateStr}</td>
           <td class="py-3.5 px-4 font-semibold">${age} yrs</td>
           <td class="py-3.5 px-4">${gender}</td>
-          <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${isAutistic ? 'bg-rose-50 text-rose-600 border border-rose-200' : 'bg-emerald-50 text-emerald-600 border border-emerald-200'}">${isAutistic ? 'High Risk' : 'Low Risk'}</span></td>
+          <td class="py-3.5 px-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${isAutistic ? 'bg-rose-50 text-rose-600 border border-rose-200' : 'bg-emerald-50 text-emerald-600 border border-emerald-200'}">${isAutistic ? 'High Risk' : 'Typical (Low Risk)'}</span></td>
           <td class="py-3.5 px-4 font-bold font-mono text-slate-900">${conf}%</td>
           <td class="py-3.5 px-4 text-right"><button onclick="document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' })" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[10px] transition">View</button></td>
         </tr>
