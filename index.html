@@ -7,7 +7,7 @@
 
   <!-- Tailwind CSS & High-End Dribbble Font Stack -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.preconnect.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,600&family=Caveat:wght@700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
@@ -287,7 +287,7 @@
             <!-- Relationship -->
             <div>
               <label class="block text-xs font-bold text-slate-700 mb-1.5">Relationship with the Child</label>
-              <select id="childRelation" class="w-full text-xs text-slate-800 border border-slate-200 rounded-2xl p-3.5 bg-white focus:outline-none focus:border-sage-500 transition">
+              <select id="childRelation" class="w-full text-xs text-slate-800 border border-slate-200 rounded-2xl p-3.5 bg-white focus:none focus:border-sage-500 transition">
                 <option value="Parent">Parent</option>
                 <option value="Caregiver">Caregiver</option>
                 <option value="Pediatrician">Pediatrician / Doctor</option>
@@ -749,15 +749,18 @@
 
 
   <!-- =========================================================
-       JAVASCRIPT: REAL BACKEND NEURAL ENGINE INTEGRATION
+       JAVASCRIPT: REAL GOOGLE COLAB AI ENGINE INTEGRATION
        ========================================================= -->
   <script>
-    // 1. Live Backend Engine Status Check (FastAPI /health)
+    // আপনার তৈরি হওয়া লাইভ ক্লাউডফ্লেয়ার এআই ব্যাকএন্ড লিংক
+    const BACKEND_URL = "https://simpson-tobacco-big-lawsuit.trycloudflare.com";
+
+    // 1. আসল ব্যাকএন্ডের হেলথ চেক
     async function checkHealth() {
       const statusEl = document.getElementById("backendStatus");
       if (!statusEl) return;
       try {
-        const res = await fetch("/health");
+        const res = await fetch(`${BACKEND_URL}/health`);
         if (res.ok) {
           statusEl.className = "hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm";
           statusEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Engine Active`;
@@ -771,7 +774,7 @@
     }
     checkHealth();
 
-    // 2. Media Previews
+    // 2. মিডিয়া প্রিভিউ
     function previewFile(type) {
       const input = document.getElementById(`${type}Input`);
       const file = input.files[0];
@@ -792,7 +795,7 @@
       }
     }
 
-    // 3. True Multimodal Neural Late-Fusion Request to FastAPI Backend (/predict)
+    // 3. গুগল কোলাবে থাকা ডিপ-লার্নিং মডেলে রিয়েল প্রেডিকশন রিকোয়েস্ট
     async function runPredictionPipeline() {
       const img = document.getElementById("imageInput").files[0];
       const aud = document.getElementById("audioInput").files[0];
@@ -805,23 +808,22 @@
       }
 
       btn.disabled = true;
-      btn.innerHTML = `<span class="inline-flex items-center gap-2">⏳ Synthesizing Tri-Modal Consensus...</span>`;
+      btn.innerHTML = `<span class="inline-flex items-center gap-2">⏳ Running Deep Neural Consensus (PyTorch)...</span>`;
 
-      // Build Multi-part FormData for app.py
       const formData = new FormData();
       formData.append("image", img);
       formData.append("audio", aud);
       formData.append("video", vid);
 
       try {
-        const response = await fetch("/predict", {
+        const response = await fetch(`${BACKEND_URL}/predict`, {
           method: "POST",
           body: formData
         });
 
         if (!response.ok) {
-          const errData = await response.json().catch(() => ({ detail: "Server encountered an error." }));
-          throw new Error(errData.detail || "Prediction request failed.");
+          const errData = await response.json().catch(() => ({ detail: "Server error during model execution." }));
+          throw new Error(errData.detail || "Prediction failed");
         }
 
         const data = await response.json();
@@ -829,23 +831,23 @@
         btn.disabled = false;
         btn.innerHTML = `Next Step (Compute Prediction) →`;
 
-        // Render actual neural model result
+        // আসল মডেল রেজাল্ট দেখানো
         displayResult(data.result);
 
       } catch (error) {
         btn.disabled = false;
         btn.innerHTML = `Next Step (Compute Prediction) →`;
-        alert("❌ Prediction Error: " + error.message + "\n\nPlease ensure 'python app.py' is running and model weights are accessible.");
+        alert("❌ Error: " + error.message + "\n\nনিশ্চিত করুন গুগল কোলাবের সেলটি এখনও চালু আছে।");
       }
     }
 
-    // 4. Populate Result Card & History Table with Real Predictions
+    // 4. ডায়াগনস্টিক রেজাল্ট দেখানো
     function displayResult(res) {
       const isAutistic = res.predicted_class.toLowerCase() === "autistic";
       const score = Math.round(res.autistic_probability);
       const conf = Math.round(res.confidence);
 
-      // Animate Donut Gauge
+      // Gauge আপডেট
       const gauge = document.getElementById('gaugePath');
       gauge.setAttribute('stroke-dasharray', `${score}, 100`);
       gauge.className = `circle ${isAutistic ? 'stroke-rose-500' : 'stroke-sage-500'}`;
@@ -856,9 +858,9 @@
       // Heading & Detail
       const heading = document.getElementById('resultHeading');
       if (isAutistic) {
-        heading.innerHTML = `Based on the provided multimodal signals, there is a <span class="text-rose-600 font-bold">high likelihood (${score}%)</span> of autism spectrum disorder (ASD).`;
+        heading.innerHTML = `Based on the provided information, there is a <span class="text-rose-600 font-bold">high likelihood (${score}%)</span> of autism spectrum disorder (ASD).`;
       } else {
-        heading.innerHTML = `Based on the provided multimodal signals, the child is classified as <span class="text-emerald-600 font-bold">Typical / Low Likelihood (${100 - score}%)</span> of ASD.`;
+        heading.innerHTML = `Based on the provided information, the child is classified as <span class="text-emerald-600 font-bold">Typical / Low Likelihood (${100 - score}%)</span> of ASD.`;
       }
 
       const detailLevel = document.getElementById('detailLevel');
@@ -870,7 +872,7 @@
       const dateStr = now.toISOString().replace('T', ' ').substring(0, 16);
       document.getElementById('detailDate').textContent = dateStr;
 
-      // Add row to History Table
+      // History টেবিলে আসল ডাটা যোগ করা
       const age = document.getElementById('childAge').value;
       const gender = document.getElementById('childGender').value;
       const tbody = document.getElementById('historyTableBody');
@@ -886,13 +888,12 @@
       `;
       tbody.insertAdjacentHTML('afterbegin', newRow);
 
-      // Smooth scroll to result
+      // রেজাল্ট সেকশনে স্ক্রল করা
       document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // 5. Initialize Interactive Charts
+    // 5. চার্ট ইনিশিয়ালাইজেশন
     window.addEventListener('DOMContentLoaded', () => {
-      // Trend Line Chart
       const ctxTrend = document.getElementById('trendChart').getContext('2d');
       new Chart(ctxTrend, {
         type: 'line',
@@ -907,7 +908,6 @@
         options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: '#F1F5F9' } }, x: { grid: { display: false } } } }
       });
 
-      // Distribution Donut Chart
       const ctxDist = document.getElementById('distributionChart').getContext('2d');
       new Chart(ctxDist, {
         type: 'doughnut',
@@ -918,7 +918,6 @@
         options: { responsive: true, maintainAspectRatio: false, cutout: '75%', plugins: { legend: { display: false } } }
       });
 
-      // Age Group Bar Chart
       const ctxBar = document.getElementById('ageBarChart').getContext('2d');
       new Chart(ctxBar, {
         type: 'bar',
